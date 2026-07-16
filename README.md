@@ -158,6 +158,3 @@ O terceiro era focado especificamente no fluxo de login e cadastro — pedindo u
 
 Durante a implementação, a primeira tentativa de banco de dados foi a biblioteca `better-sqlite3`, uma escolha comum e amplamente documentada para Node.js — mas ela depende de compilação nativa (`node-gyp`), e a instalação falhou neste ambiente Windows por falta de um Python compatível para o build. Diagnosticar isso não foi imediato: a IA testou primeiro se o módulo experimental `node:sqlite`, nativo do Node 22+, funcionava sem flags antes de trocar a dependência — e só então reescreveu a camada de acesso a dados (`backend/src/db/connection.ts` e os repositórios) para usar a API nativa, sem exigir nenhuma ferramenta de build externa.
 
-### Histórico de conversa
-
-> **[PREENCHER PELO CANDIDATO]** — Cole aqui o link público da conversa, se optar por compartilhá-la (recurso disponível na interface do Claude/ChatGPT). Não é possível gerar esse link automaticamente.
