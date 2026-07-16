@@ -157,7 +157,7 @@
 }
 
 section.cta-section {
-  margin: var(--space-8) var(--space-5);
+  margin: var(--space-8) auto;
 }
 
 @media (max-width: 1020px) {
