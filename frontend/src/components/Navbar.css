@@ -1,0 +1,111 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-height);
+  background: rgba(246, 241, 231, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  max-width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--color-brand-dark);
+}
+
+.navbar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  color: var(--color-surface);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.navbar__links {
+  display: flex;
+  gap: var(--space-5);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+
+.navbar__links a:hover {
+  color: var(--color-brand-dark);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.navbar__button {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.navbar__button--ghost {
+  color: var(--color-ink);
+}
+
+.navbar__button--ghost:hover {
+  color: var(--color-brand-dark);
+}
+
+.navbar__button--outline {
+  border-color: var(--color-border);
+  color: var(--color-ink-soft);
+  background: none;
+}
+
+.navbar__button--outline:hover {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.navbar__button--solid {
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.navbar__button--solid:hover {
+  background: var(--color-brand-dark);
+}
+
+@media (max-width: 720px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__inner {
+    padding: 0 var(--space-4);
+  }
+
+  .navbar__brand {
+    font-size: 0.95rem;
+  }
+}
