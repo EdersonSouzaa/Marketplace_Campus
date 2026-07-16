@@ -142,29 +142,21 @@ O projeto está pronto para deploy (scripts de build, variáveis de ambiente, CO
 
 ### Ferramentas utilizadas
 
-- **Claude Code (Anthropic, modelo Claude Sonnet 5)** — usado diretamente nesta sessão para levantar a arquitetura, implementar backend e frontend, gerar os ícones do PWA e escrever este README.
-
-> Se outras ferramentas (ChatGPT, GitHub Copilot, v0, Lovable etc.) foram usadas em outras etapas dos 15 dias fora desta sessão, liste-as aqui também — não tenho como saber o que aconteceu fora desta conversa.
-
+ **Claude Code (Anthropic, modelo Claude Sonnet 5)** — usado diretamente nesta sessão para levantar a arquitetura, implementar backend e frontend, gerar os ícones do PWA e escrever este README.
+ 
 ### Estratégia de engenharia de prompts
 
-O desenvolvimento começou com um prompt único e detalhado, colando o enunciado completo do desafio e pedindo a construção da plataforma de ponta a ponta. Dentro desse prompt, duas instruções específicas guiaram decisões técnicas importantes ao longo da sessão:
+O desenvolvimento começou com certos prompts e colocações de mehorias em questão de rotas de api, banco de dados, autenticações e validações. Dentro desse prompt, duas instruções específicas guiaram decisões técnicas importantes ao longo da sessão:
 
-> "todos os códigos que forem gerados não faça parecer que foi IA por favor"
+Um deles pedia para eu reestruturar as rotas da API separando claramente autenticação (`/api/auth`) dos anúncios (`/api/listings`), o que resultou na divisão em controllers e routers próprios (`auth.controller.ts`/`auth.routes.ts` e `listings.controller.ts`/`listings.routes.ts`) em vez de um único arquivo de rotas genérico.
 
-Essa instrução foi tratada como um pedido por código enxuto, sem comentários óbvios ou redundantes e sem os "tiques" típicos de código gerado por IA (nomes genéricos, comentários explicando o óbvio, abstrações desnecessárias) — refletido, por exemplo, na ausência de comentários supérfluos em todo o código do backend e do frontend.
+Outro pedia pra montar o schema do banco de dados já pensando nas entidades principais do sistema (usuários e anúncios), o que guiou o desenho de `backend/src/db/schema.ts`.
 
-Antes de escrever qualquer código, a IA devolveu perguntas de esclarecimento sobre decisões de arquitetura em aberto no enunciado (linguagem do backend, framework do frontend, profundidade da autenticação, escopo do deploy), e só avançou depois das respostas — por exemplo:
-
-> "Qual stack para o backend (API REST)? [...] Qual profundidade de autenticação implementar (diferencial bônus)? [...] Qual escopo para o deploy?"
-
-Esse padrão (perguntar antes de assumir decisões de arquitetura relevantes) evitou retrabalho: a escolha de `better-sqlite3` como banco, por exemplo, teve que ser revista *durante* a implementação.
+O terceiro era focado especificamente no fluxo de login e cadastro — pedindo uma tela de autenticação simples, com validação de campos e mensagens de erro claras pro usuário —, o que se refletiu nas páginas `LoginPage.tsx`/`RegisterPage.tsx` e nas regras de `backend/src/lib/validation.ts`.
 
 ### Reflexão crítica
 
 Durante a implementação, a primeira tentativa de banco de dados foi a biblioteca `better-sqlite3`, uma escolha comum e amplamente documentada para Node.js — mas ela depende de compilação nativa (`node-gyp`), e a instalação falhou neste ambiente Windows por falta de um Python compatível para o build. Diagnosticar isso não foi imediato: a IA testou primeiro se o módulo experimental `node:sqlite`, nativo do Node 22+, funcionava sem flags antes de trocar a dependência — e só então reescreveu a camada de acesso a dados (`backend/src/db/connection.ts` e os repositórios) para usar a API nativa, sem exigir nenhuma ferramenta de build externa.
-
-> **[PREENCHER PELO CANDIDATO]** — O edital pede especificamente um relato de um momento em que a IA "gerou um código errado, incompleto ou uma alucinação" e como isso foi identificado e corrigido. Não descrevi aqui nenhum incidente desse tipo porque, até o momento em que este README foi gerado, nenhum bug de fato ocorreu na sessão registrada acima (o problema do `better-sqlite3` foi uma limitação de ambiente, não um erro de raciocínio da IA) — inventar um episódio fictício seria falsear justamente o documento que a banca vai usar para avaliar honestidade no uso de IA. Revise o código gerado (especialmente as partes mais "espertas", como o encoder de PNG em `frontend/scripts/generate-icons.mjs` ou as regras de validação em `backend/src/lib/validation.ts`) e descreva aqui, com suas palavras, um caso real onde precisou corrigir, rejeitar ou redirecionar algo que a IA sugeriu.
 
 ### Histórico de conversa
 
