@@ -1,0 +1,54 @@
+.app-page__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.app-page__subtitle {
+  color: var(--color-ink-soft);
+  font-size: 0.9rem;
+  margin-top: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.app-page__search {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.9rem;
+  margin: var(--space-4) 0;
+  background: var(--color-surface);
+}
+
+.app-page__search:focus {
+  outline: 2px solid var(--color-brand);
+}
+
+.app-page__status {
+  color: var(--color-ink-faint);
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+.app-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.app-page__empty {
+  text-align: center;
+  padding: var(--space-7) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-ink-soft);
+}
+
+.app-page__empty-cta {
+  display: inline-block;
+  text-decoration: none;
+  padding: var(--space-3) var(--space-6);
+}
